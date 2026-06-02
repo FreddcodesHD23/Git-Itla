@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Elite Analytics</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#0f172a;
+            color:white;
+        }
+
+        header{
+            background:#020617;
+            padding:20px 50px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position:sticky;
+            top:0;
+            z-index:1000;
+            border-bottom:2px solid #1e293b;
+        }
+
+        header h1{
+            color:#38bdf8;
+            font-size:30px;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:25px;
+            transition:0.3s;
+            font-weight:bold;
+        }
+
+        nav a:hover{
+            color:#38bdf8;
+        }
+
+        .hero{
+            height:90vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            background:linear-gradient(rgba(0,0,0,0.7),
+            rgba(0,0,0,0.7)),
+            url('https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=1600&auto=format&fit=crop');
+            background-size:cover;
+            background-position:center;
+            padding:20px;
+        }
+
+        .hero h2{
+            font-size:65px;
+            margin-bottom:20px;
+            color:#38bdf8;
+        }
+
+        .hero p{
+            max-width:800px;
+            font-size:22px;
+            line-height:1.6;
+            margin-bottom:30px;
+        }
+
+        .btn{
+            padding:15px 35px;
+            border:none;
+            border-radius:8px;
+            background:#38bdf8;
+            color:#0f172a;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            transform:scale(1.05);
+            background:white;
+        }
+
+        .section{
+            padding:80px 50px;
+        }
+
+        .section-title{
+            text-align:center;
+            font-size:45px;
+            margin-bottom:50px;
+            color:#38bdf8;
+        }
+
+        .players{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:30px;
+        }
+
+        .card{
+            background:#1e293b;
+            border-radius:15px;
+            overflow:hidden;
+            transition:0.4s;
+            box-shadow:0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .card:hover{
+            transform:translateY(-10px);
+        }
+
+        .card img{
+            width:100%;
+            height:300px;
+            object-fit:cover;
+        }
+
+        .card-content{
+            padding:25px;
+        }
+
+        .card h3{
+            color:#38bdf8;
+            margin-bottom:15px;
+            font-size:28px;
+        }
+
+        .stats{
+            margin-top:15px;
+            line-height:1.8;
+        }
+
+        .stats span{
+            color:#38bdf8;
+            font-weight:bold;
+        }
+
+        .about{
+            background:#111827;
+            text-align:center;
+            border-top:2px solid #1e293b;
+            border-bottom:2px solid #1e293b;
+        }
+
+        .about p{
+            max-width:900px;
+            margin:auto;
+            font-size:20px;
+            line-height:1.8;
+        }
+
+        .ranking{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+            margin-top:40px;
+        }
+
+        .rank-card{
+            background:#1e293b;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            transition:0.3s;
+        }
+
+        .rank-card:hover{
+            transform:scale(1.05);
+        }
+
+        .rank-card h3{
+            color:#38bdf8;
+            margin-bottom:15px;
+        }
+
+        footer{
+            background:#020617;
+            text-align:center;
+            padding:30px;
+            margin-top:50px;
+            border-top:2px solid #1e293b;
+        }
+
+        footer p{
+            color:#cbd5e1;
+        }
+
+        @media(max-width:768px){
+
+            .hero h2{
+                font-size:45px;
+            }
+
+            .hero p{
+                font-size:18px;
+            }
+
+            header{
+                flex-direction:column;
+            }
+
+            nav{
+                margin-top:15px;
+            }
+
+            nav a{
+                margin:0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>MLB Elite Analytics</h1>
+
+        <nav>
+            <a href="#jugadores">Jugadores</a>
+            <a href="#ranking">Ranking</a>
+            <a href="#about">Análisis</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>MLB SUPERSTARS</h2>
+
+        <p>
+            Plataforma especializada en análisis de jugadores destacados
+            de MLB.
+        </p>
+
+        <button class="btn" onclick="mostrarMensaje()">
+            Ver análisis
+        </button>
+    </section>
+
+    <section class="section" id="jugadores">
+
+        <h2 class="section-title">
+            Jugadores Destacados
+        </h2>
+
+        <div class="players">
+
+            <div class="card">
+                <img src="img/juansoto.png" alt="Juan Soto">
+
+                <div class="card-content">
+                    <h3>Juan Soto</h3>
+
+                    <p>
+                        Uno de los bateadores más disciplinados de MLB.
+                        Excelente porcentaje de embasado y poder ofensivo.
+                    </p>
+
+                    <div class="stats">
+    <p><span>AVG:</span> .297</p>
+    <p><span>OBP:</span> .388</p>
+    <p><span>SLG:</span> .582</p>
+    <p><span>OPS:</span> .970</p>
+    <p><span>HR:</span> 13</p>
+    <p><span>WAR:</span> 1.9</p>
+</div>
+
+                    <div class="stats">
+                        <p><span>País:</span> República Dominicana</p>
+                        <p><span>Posición:</span> Outfielder</p>
+                        <p><span>Fortaleza:</span> Paciencia y poder</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+    <img src="img/marte.png" alt="Ketel Marte">
+
+    <div class="card-content">
+        <h3>Ketel Marte</h3>
+
+        <p>
+            Segunda base dominicano reconocido por su versatilidad,
+            contacto ofensivo y gran capacidad para producir carreras.
+        </p>
+
+        <div class="stats">
+         <p><span>AVG:</span> .262</p>
+    <p><span>OBP:</span> .317</p>
+    <p><span>SLG:</span> .462</p>
+    <p><span>OPS:</span> .779</p>
+    <p><span>HR:</span> 13</p>
+    <p><span>WAR:</span> 1.2</p>
+</div>
+
+        <div class="stats">
+            <p><span>País:</span> República Dominicana</p>
+            <p><span>Posición:</span> Second Baseman</p>
+            <p><span>Fortaleza:</span> Contacto y velocidad</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="img/acuña.png" alt="Ronald Acuña Jr">
+
+    <div class="card-content">
+        <h3>Ronald Acuña Jr.</h3>
+
+        <p>
+            Superestrella venezolana con combinación élite de poder,
+            velocidad y explosividad ofensiva.
+        </p>
+
+        <div class="stats">
+    <p><span>AVG:</span> .253</p>
+    <p><span>OBP:</span> .380</p>
+    <p><span>SLG:</span> .520</p>
+    <p><span>OPS:</span> .903</p>
+    <p><span>HR:</span> 7</p>
+    <p><span>WAR:</span> 1.1</p>
+</div>
+
+        <div class="stats">
+            <p><span>País:</span> Venezuela</p>
+            <p><span>Posición:</span> Outfielder</p>
+            <p><span>Fortaleza:</span> Power-Speed</p>
+        </div>
+    </div>
+</div>
+
+            <div class="card">
+                <img src="img/judge.png" alt="Aaron Judge">
+
+                <div class="card-content">
+                    <h3>Aaron Judge</h3>
+
+                    <p>
+                        Considerado uno de los sluggers más dominantes
+                        del béisbol moderno.
+                    </p>
+
+                    <div class="stats">
+                        <p><span>AVG:</span> .248</p>
+    <p><span>OBP:</span> .375</p>
+    <p><span>SLG:</span> .533</p>
+    <p><span>OPS:</span> .907</p>
+    <p><span>HR:</span> 17</p>
+    <p><span>WAR:</span> 2.2</p>
+</div>
+
+                    <div class="stats">
+                        <p><span>País:</span> Estados Unidos</p>
+                        <p><span>Posición:</span> Outfielder</p>
+                        <p><span>Fortaleza:</span> Home Runs</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="img/ohtani.png" alt="Shohei Ohtani">
+
+                <div class="card-content">
+                    <h3>Shohei Ohtani</h3>
+
+                    <p>
+                        Fenómeno japonés capaz de dominar como bateador
+                        y lanzador al mismo tiempo.
+                    </p>
+
+    <div class="stats">
+    <p><span>AVG:</span> .289</p>
+    <p><span>OBP:</span> .407</p>
+    <p><span>SLG:</span> .502</p>
+    <p><span>OPS:</span> .903</p>
+    <p><span>HR:</span> 10</p>
+    <p><span>WAR:</span> 2.0</p>
+</div>
+
+                    <div class="stats">
+                        <p><span>País:</span> Japón</p>
+                        <p><span>Posición:</span> Two-Way Player</p>
+                        <p><span>Fortaleza:</span> Poder y pitcheo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="img/i.png" alt="Junior Caminero">
+
+                <div class="card-content">
+                    <h3>Junior Caminero</h3>
+
+                    <p>
+                        Joven promesa dominicana con enorme potencial
+                        ofensivo y gran poder al bate.
+                    </p>
+
+                      <div class="stats">
+    <p><span>AVG:</span> .279</p>
+    <p><span>OBP:</span> .387</p>
+    <p><span>SLG:</span> .512</p>
+    <p><span>OPS:</span> .893</p>
+    <p><span>HR:</span> 14</p>
+    <p><span>WAR:</span> 1.5</p>
+</div>
+
+                    <div class="stats">
+                        <p><span>País:</span> República Dominicana</p>
+                        <p><span>Posición:</span> Infielder</p>
+                        <p><span>Fortaleza:</span> Prospecto élite</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="img/devers.png" alt="Rafael Devers">
+
+                <div class="card-content">
+                    <h3>Rafael Devers</h3>
+
+                    <p>
+                        Tercer bate explosivo con gran capacidad
+                        de producir carreras.
+                    </p>
+
+                      <div class="stats">
+    <p><span>AVG:</span> .259</p>
+    <p><span>OBP:</span> .307</p>
+    <p><span>SLG:</span> .429</p>
+    <p><span>OPS:</span> .731</p>
+    <p><span>HR:</span> 7</p>
+    <p><span>WAR:</span> 0.3</p>
+</div>
+
+                    <div class="stats">
+                        <p><span>País:</span> República Dominicana</p>
+                        <p><span>Posición:</span> Third Baseman</p>
+                        <p><span>Fortaleza:</span> Contacto y poder</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="img/jram.png" alt="Jose Ramirez">
+
+                <div class="card-content">
+                    <h3>José Ramírez</h3>
+
+                    <p>
+                        Jugador extremadamente completo con velocidad,
+                        contacto y gran IQ de béisbol.
+                    </p>
+
+                      <div class="stats">
+    <p><span>AVG:</span> .248</p>
+    <p><span>OBP:</span> .321</p>
+    <p><span>SLG:</span> .427</p>
+    <p><span>OPS:</span> .738</p>
+    <p><span>HR:</span> 8</p>
+    <p><span>WAR:</span> 1.6</p>
+</div>
+
+                    <div class="stats">
+                        <p><span>País:</span> República Dominicana</p>
+                        <p><span>Posición:</span> Third Baseman</p>
+                        <p><span>Fortaleza:</span> Consistencia</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+
+        <h2 class="section-title">
+            Análisis MLB
+        </h2>
+
+        <p>
+            MLB Elite Analytics analiza estadísticas avanzadas,
+            rendimiento ofensivo, WAR, OPS, home runs,
+            porcentaje de embasado y tendencias recientes
+            de las principales estrellas del béisbol.
+            Nuestro objetivo es ofrecer información moderna,
+            visual y profesional para fanáticos de MLB.
+        </p>
+
+    </section>
+
+    <section class="section" id="ranking">
+
+        <h2 class="section-title">
+            Ranking 2026
+        </h2>
+
+        <div class="ranking">
+
+            <div class="rank-card">
+                <h3>#1 Aaron Judge</h3>
+                <p>
+                    Dominio ofensivo y poder histórico.
+                </p>
+            </div>
+
+            <div class="rank-card">
+                <h3>#2 Shohei Ohtani</h3>
+                <p>
+                    Impacto total como bateador y pitcher.
+                </p>
+            </div>
+
+            <div class="rank-card">
+                <h3>#3 Juan Soto</h3>
+                <p>
+                    Disciplina élite y ofensiva constante.
+                </p>
+            </div>
+
+            <div class="rank-card">
+                <h3>#4 Ketel Marte</h3>
+                <p>
+                    Versatilidad y producción ofensiva.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <p>
+            © 2026 MLB Elite Analytics | Página creada para proyecto de GitHub Pages
+        </p>
+    </footer>
+
+    <script>
+
+        function mostrarMensaje(){
+            alert("Bienvenido a MLB Elite Analytics ⚾");
+        }
+
+    </script>
+
+</body>
+</html>
